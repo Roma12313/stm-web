@@ -1,25 +1,40 @@
 import logo from './logo.svg';
 import './App.css';
+import createUser from './components/createUser'
+import userList from './components/userList'
+import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
+import NavigationBar from './components/NavigationBar';
+import {Container,Row,Col} from 'react-bootstrap';
+import Welcome from './components/Welcome'
+import Footer from './components/Footer';
+import createTask from './components/createTask';
+import taskList from './components/taskList';
+export default function App() {
 
-function App() {
+
+  const marginTop={
+    marginTop:"20px"
+  };
+  
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
-
-export default App;
+	  
+    <Router>
+      <NavigationBar/>
+      <Container>
+        <Row>
+          <Col lg={12} style={marginTop}>
+            <Switch>			  
+              <Route path="/createUser" exact component ={createUser}/>
+              <Route path="/listUsers" exact component ={userList}/>
+              <Route path="/createTask" exact component ={createTask}/>
+              <Route path="/listTasks" exact component ={taskList}/>
+  
+            </Switch>
+          </Col>
+        </Row>
+      </Container>
+      <Footer/>
+    
+   </Router>
+   );
+ }
